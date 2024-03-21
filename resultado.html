@@ -1,0 +1,33 @@
+
+    
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Revendas Parvi</title>
+        <link rel="stylesheet" href="style.css"> <!-- Importe o estilo da página de login -->
+    </head>
+    <body>
+        <h1>Acesso ao dashbord SOF</h1>
+        <ul class="revendas-list">
+            <li><button class="btn" onclick="openDashboard('revenda1')">Audi Center - Boa viagem/Recife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda2')">Byd - Boa viagem/Recife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda3')">Bremem - Boa viagem/Recife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda4')">Toyolex - Imbiribeira/Recife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda5')">Toyolex - AfogadosRecife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda6')">Toyolex  - Rui Barbosa/Recife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda7')">Jeep - Rui Barbosa/Recife</button></li>
+            <li><button class="btn" onclick="openDashboard('revenda0001.0002')">Auto Nunes/Recife</button></li>
+        </ul>
+        <script>
+            function openDashboard(revenda) {
+                window.location.href = "dashboard_" + revenda + ".html";
+            }
+        </script>
+    </body>
+    </html>
+    
+
+</body>
+</html>

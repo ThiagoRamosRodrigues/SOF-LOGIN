@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Login | SOF </title>
+</head>
+<body>
+    
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <div class ="logo-cabeça">
+                <nav class="sof-init">
+                    <img src="img/sof (1).svg" alt="logo.png">
+                </nav>
+                </div>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="https://homolog.jucamillo.com.br/sof24/" class="link active">Home</a></li>
+                <li><a href="#" class="link">Blog</a></li>
+                <li><a href="#" class="link">Serviços</a></li>
+                <li><a href="#" class="link">Sobre</a></li>
+            </ul>
+        </div>
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="toggleForm('login')">Entrar</button>
+            <button class="btn" id="registerBtn" onclick="toggleForm('register')">Inscrever-se</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+ <!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+        <img src="img/bodyComputador.png" alt="logo.png">
+        <div class="login-container" id="login">
+            <div class="top">
+                <span>Não tem uma conta? <a href="#" onclick="toggleForm('register')">inscrever-se</a></span>
+                <header>Login</header>
+            </div>
+            <div class="input-box">
+                <input type="email" id="login-email" class="input-field" placeholder="Email">
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="login-senha" class="input-field" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <button id="btnLogin" class="submit">Entrar</button>
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check">Lembre-se de mim</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Esqueceu sua senha?</a></label>
+                </div>
+            </div>
+        </div>
+
+        <!------------------- registration form -------------------------->
+        <div class="register-container" id="register">
+            <div class="top">
+                <span>Ter uma conta?<a href="#" onclick="toggleForm('login')">Login</a></span>
+                <header>Inscrever-se</header>
+            </div>
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="email" id="cadastro-email" class="input-field" placeholder="E-mail">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="cadastro-senha" class="input-field" placeholder="Password">
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <button id="btnCadastrar" class="submit">Registro</button>
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check"> Lembre-se de mim</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Termos e condições</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleForm(formType) {
+        var loginContainer = document.getElementById('login');
+        var registerContainer = document.getElementById('register');
+        var loginBtn = document.getElementById('loginBtn');
+        var registerBtn = document.getElementById('registerBtn');
+
+        if (formType === 'login') {
+            loginContainer.style.left = "4px";
+            registerContainer.style.right = "-520px";
+            loginBtn.className = "btn white-btn";
+            registerBtn.className = "btn";
+        } else if (formType === 'register') {
+            loginContainer.style.left = "-520px";
+            registerContainer.style.right = "4px";
+            loginBtn.className = "btn";
+            registerBtn.className = "btn white-btn";
+        }
+    }
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyD3xruojPV1pBAgMIOC6XEb6y0y0bnxmbc",
+        authDomain: "login-sof.firebaseapp.com",
+        projectId: "login-sof",
+        storageBucket: "login-sof.appspot.com",
+        messagingSenderId: "144690230608",
+        appId: "1:144690230608:web:2e2fe84ab792c8ac54a855",
+        measurementId: "G-SE7FSBQZ3N"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    function login() {
+        const email = document.getElementById('login-email').value;
+        const senha = document.getElementById('login-senha').value;
+    
+        signInWithEmailAndPassword(auth, email, senha)
+            .then((userCredential) => {
+                
+                alert("Login bem-sucedido!");
+                const user = userCredential.user;
+    
+                
+                if (email === "albanezia.pastick@autoorientenissan.com.br") {
+                    window.location.href = "dashboard_AutoOriente.html";
+                } else if (email === "email.com") {
+                    window.location.href = "dashboard_Sael.html";
+} 
+
+
+                 else {
+                    window.location.href = "home.html"; 
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            })
+            .catch((error) => {
+                
+                const errorMessage = error.message;
+                alert("Falha ao fazer login: " + errorMessage);
+            });
+    }
+
+    function cadastrar() {
+        const email = document.getElementById('cadastro-email').value;
+        const senha = document.getElementById('cadastro-senha').value;
+
+        createUserWithEmailAndPassword(auth, email, senha)
+            .then((userCredential) => {
+                // Cadastro bem-sucedido
+                alert("Usuário cadastrado com sucesso!");
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                // Se ocorrer um erro durante o cadastro
+                const errorMessage = error.message;
+                alert("Falha ao cadastrar usuário: " + errorMessage);
+            });
+    }
+
+    document.getElementById('btnCadastrar').addEventListener('click', cadastrar);
+
+    // Adicionar um evento de clique ao botão de login
+    document.getElementById('btnLogin').addEventListener('click', login);
+</script>
+
+<script>
+    function register() {
+        var loginContainer = document.getElementById('login');
+        var registerContainer = document.getElementById('register');
+        var loginBtn = document.getElementById('loginBtn');
+        var registerBtn = document.getElementById('registerBtn');
+
+        loginContainer.style.left = "-510px";
+        registerContainer.style.right = "5px";
+        loginBtn.className = "btn";
+        registerBtn.className += " white-btn";
+        loginContainer.style.opacity = 0;
+        registerContainer.style.opacity = 1;
+    }
+</script>
+</body>
+</html>
